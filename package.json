@@ -1,0 +1,26 @@
+{
+  "name": "light-it-challenge",
+  "version": "1.0.0",
+  "description": "Challenge de Light-it",
+  "main": "src/api/server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/api/server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "eslint": "^8.42.0",
+    "eslint-config-prettier": "^8.8.0",
+    "express": "^4.21.2",
+    "jest": "^29.5.0",
+    "multer": "^1.4.5-lts.1",
+    "mysql2": "^3.12.0",
+    "prettier": "^2.8.8"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.2"
+  }
+}
