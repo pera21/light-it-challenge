@@ -1,0 +1,75 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Swagger Light it Challenge",
+    "version": "1.0.0",
+    "description": "Documentación de la API con Swagger"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000",
+      "description": "Servidor local"
+    }
+  ],
+  "paths": {
+    "/register": {
+      "post": {
+        "summary": "Registrar un paciente nuevo",
+        "description": "Registra un paciente nuevo en el sistema",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "Juan Pérez"
+                  },
+                  "email": {
+                    "type": "string",
+                    "format": "email",
+                    "example": "juanperez@example.com"
+                  },
+                  "address": {
+                    "type": "string",
+                    "example": "Calle Juan Gomen 1234"
+                  },
+                  "phone": {
+                    "type": "string",
+                    "example": "+5491112345678"
+                  },
+                  "document": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "Imagen del documento"
+                  }
+                },
+                "required": ["name", "email", "address", "phone", "document"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Nuevo paciente registrado",
+            "content": {
+              "application/json": {
+                "example": { "message": "Paciente Roberto registrado" }
+              }
+            }
+          },
+          "409": {
+            "description": "Error registrando paciente nuevo",
+            "content": {
+              "application/json": {
+                "example": { "message": "Error al registrar paciente Roberto. Intentelo nuevamente" }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

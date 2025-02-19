@@ -6,6 +6,7 @@ export function validateRegister(req, res, next) {
 
   const nameRegex = /^[a-zA-ZÁÉÍÓÚáéíóú\s]{2,}$/;
   if (!name?.trim() || !nameRegex.test(name)) {
+    console.info(`Nombre invalido`);
     return res.status(400).json({ message: `Nombre invalido` });
   }
 

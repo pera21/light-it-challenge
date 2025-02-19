@@ -2,6 +2,8 @@ import express from 'express';
 import multer from 'multer';
 import { patientController } from './index.js';
 import { fileFilter, handleMulterErrors, validateRegister } from './middleware.js';
+import swaggerUi from 'swagger-ui-express';
+import swaggerDocument from '../docs/swagger.json' assert { type: 'json' };
 
 const router = express.Router();
 
@@ -16,5 +18,7 @@ router.post(
   validateRegister,
   patientController.registerPatient
 );
+
+router.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 export default router;
