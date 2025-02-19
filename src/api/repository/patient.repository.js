@@ -20,7 +20,7 @@ function createPatientRepository(dbConnection) {
       await dbConnection.commit();
       return true;
     } catch (err) {
-      console.log(err);
+      console.error(err);
       return false;
     }
   }
