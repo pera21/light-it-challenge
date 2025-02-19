@@ -1,20 +1,26 @@
-import mysql from 'mysql2/promise';
+const mysql = require('mysql2/promise');
+
+let connection = null;
 
 async function createDatabaseConnection(config) {
-  try {
-    const connection = await mysql.createConnection({
-      host: config.host,
-      user: config.user,
-      database: config.database,
-      password: config.password,
-      port: config.port
-    });
-    console.log(`Database connected ${config.host}!`);
+  if (connection) {
+    console.info('Using existing database connection');
     return connection;
-  } catch (error) {
-    console.error(`Error connecting to ${config.host} `, error);
-    throw error;
   }
+
+  console.info('Creating new database connection...');
+  await mysql
+    .createConnection(config)
+    .then(conn => {
+      connection = conn;
+      console.info(`Database connected ${config.host}!`);
+    })
+    .catch(error => {
+      console.error(`Error connecting to ${config.host}:`, error);
+      throw error;
+    });
+
+  return connection;
 }
 
-export default createDatabaseConnection;
+module.exports = { createDatabaseConnection };

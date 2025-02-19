@@ -12,4 +12,4 @@ function createPatientController(patientService) {
   return { registerPatient };
 }
 
-export default createPatientController;
+module.exports = { createPatientController };

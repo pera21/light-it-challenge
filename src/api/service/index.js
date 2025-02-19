@@ -1,8 +1,10 @@
-import { patientRepository } from '../repository/index.js';
-import createEmailNotificationService from './email.service.js';
-import createNotificationService from './notification.service.js';
-import createPatientService from './patient.service.js';
+const { patientRepository } = require('../repository/index.js');
+const { createEmailNotificationService } = require('./email.service.js');
+const { createNotificationService } = require('./notification.service.js');
+const { createPatientService } = require('./patient.service.js');
 
 const emailNotificationService = createEmailNotificationService();
 const notificationService = createNotificationService({ email: emailNotificationService });
-export const patientService = createPatientService(patientRepository, notificationService);
+const patientService = createPatientService(patientRepository, notificationService);
+
+module.exports = { patientService };

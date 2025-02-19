@@ -12,4 +12,4 @@ function createPatientService(patientRepository) {
   return { registerPatient };
 }
 
-export default createPatientService;
+module.exports = { createPatientService };

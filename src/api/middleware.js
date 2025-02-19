@@ -1,6 +1,6 @@
-import { MulterError } from 'multer';
+const { MulterError } = require('multer');
 
-export function validateRegister(req, res, next) {
+function validateRegister(req, res, next) {
   const { name, email, address, phone } = req.body;
   const photo = req.file;
 
@@ -34,7 +34,7 @@ export function validateRegister(req, res, next) {
   next();
 }
 
-export function fileFilter(req, file, cb) {
+function fileFilter(req, file, cb) {
   if (!file) {
     return cb(new Error('No se ha subido ninguna imagen de documento'));
   }
@@ -45,7 +45,7 @@ export function fileFilter(req, file, cb) {
   cb(null, true);
 }
 
-export function handleMulterErrors(err, req, res, next) {
+function handleMulterErrors(err, req, res, next) {
   if (err instanceof MulterError) {
     return res.status(400).json({ message: err.message });
   } else if (err) {
@@ -53,3 +53,5 @@ export function handleMulterErrors(err, req, res, next) {
   }
   next();
 }
+
+module.exports = { validateRegister, fileFilter, handleMulterErrors };

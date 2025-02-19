@@ -1,7 +1,7 @@
-import express from 'express';
-import multer from 'multer';
-import { patientController } from './index.js';
-import { fileFilter, handleMulterErrors, validateRegister } from './middleware.js';
+const express = require('express');
+const multer = require('multer');
+const { patientController } = require('./index.js');
+const { fileFilter, handleMulterErrors, validateRegister } = require('./middleware.js');
 
 const router = express.Router();
 
@@ -17,4 +17,4 @@ router.post(
   patientController.registerPatient
 );
 
-export default router;
+module.exports = { router };

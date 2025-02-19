@@ -27,4 +27,4 @@ function createPatientRepository(dbConnection) {
   return { savePatient };
 }
 
-export default createPatientRepository;
+module.exports = { createPatientRepository };

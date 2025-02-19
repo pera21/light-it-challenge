@@ -1,4 +1,5 @@
-import createPatientController from './controller/patient.controller.js';
-import { patientService } from './service/index.js';
+const { createPatientController } = require('./controller/patient.controller.js');
+const { patientService } = require('./service/index.js');
 
-export const patientController = createPatientController(patientService);
+const patientController = createPatientController(patientService);
+module.exports = { patientController };

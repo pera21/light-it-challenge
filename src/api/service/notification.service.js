@@ -7,4 +7,4 @@ function createNotificationService(notificationChannel) {
   return { sendNotification };
 }
 
-export default createNotificationService;
+module.exports = { createNotificationService };

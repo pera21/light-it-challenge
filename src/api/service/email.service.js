@@ -6,4 +6,4 @@ function createEmailNotificationService() {
   return { send };
 }
 
-export default createEmailNotificationService;
+module.exports = { createEmailNotificationService };

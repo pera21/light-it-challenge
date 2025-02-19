@@ -1,11 +1,14 @@
 /* eslint-env node */
 module.exports = {
   env: {
-    node: true,
-    es2022: true
+    browser: true,
+    commonjs: true,
+    es2021: true,
+    jest: true,
+    node: true
   },
   root: true,
-  extends: ['eslint:recommended'],
+  extends: ['eslint:recommended', 'prettier'],
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module'
