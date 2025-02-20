@@ -8,7 +8,11 @@ describe('#Patient Service', () => {
       savePatient: jest.fn().mockResolvedValue(true)
     };
 
-    const service = createPatientService(patientRepository);
+    const notificationService = {
+      sendNotification: jest.fn()
+    };
+
+    const service = createPatientService(patientRepository, notificationService);
 
     const patientData = {
       name: 'Pepe',
@@ -28,12 +32,21 @@ describe('#Patient Service', () => {
     // Assert
     expect(result).toEqual({ success: true, message: `Paciente ${patientData.name} registrado con exito` });
     expect(patientRepository.savePatient).toHaveBeenCalledWith(patientData, file);
+    expect(notificationService.sendNotification).toHaveBeenCalledWith(
+      patientData,
+      'email',
+      'verification-code'
+    );
   });
 
   it('Saving patient failed, return success false', async () => {
     // Arrange
     const patientRepository = {
       savePatient: jest.fn().mockResolvedValue(false)
+    };
+
+    const notificationService = {
+      sendNotification: jest.fn()
     };
 
     const service = createPatientService(patientRepository);
@@ -56,6 +69,7 @@ describe('#Patient Service', () => {
     // Assert
     expect(result).toEqual({ success: false, message: `Error al registrar a paciente ${patientData.name}` });
     expect(patientRepository.savePatient).toHaveBeenCalledWith(patientData, file);
+    expect(notificationService.sendNotification).not.toHaveBeenCalled();
   });
 
   afterEach(() => {

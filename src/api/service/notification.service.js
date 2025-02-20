@@ -1,7 +1,6 @@
 function createNotificationService(notificationChannel) {
-  function sendNotification(patient, channel, content) {
-    console.info(`Send notification ${patient.name} to channel ${channel}`);
-    return notificationChannel[channel].send(patient, content);
+  async function sendNotification(patient, channel, type) {
+    return await notificationChannel[channel].send(patient, type);
   }
 
   return { sendNotification };
