@@ -12,7 +12,7 @@
     }
   ],
   "paths": {
-    "/register": {
+    "/light-it/register": {
       "post": {
         "summary": "Registrar un paciente nuevo",
         "description": "Registra un paciente nuevo en el sistema",
@@ -45,8 +45,7 @@
                     "format": "binary",
                     "description": "Imagen del documento"
                   }
-                },
-                "required": ["name", "email", "address", "phone", "document"]
+                }
               }
             }
           }
